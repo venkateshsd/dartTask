@@ -4,13 +4,15 @@
 import 'dart:io';
 import 'package:parsingshape/parsingshape.dart' as parsingshape;
 
-evaluate(List<double> squareOutput) {
+evaluate(String objectType, List<double> squareOutput) {
   List<String> input = parsingshape.readFile('predicates.txt');
+
+  stdout.write("\nObject Type: $objectType \n");
 
   for (var line in input) {
     var obj = line.toString();
     var objParams = obj.split(" ");
-    //print(objParams);
+
 
     var area = double.parse(squareOutput[0].toString());
     var cir = double.parse(squareOutput[1].toString());
@@ -23,9 +25,7 @@ evaluate(List<double> squareOutput) {
       if (isArea && greater) {
         var val = double.parse(objParams[2].toString());
         if (area > val) {
-          print("Area is greater than");
-          print(val);
-          print("\n");
+          stdout.write("Area is greater than $val \n");
         }
       }
 
@@ -33,9 +33,7 @@ evaluate(List<double> squareOutput) {
         if(!isCir) {
           var val = double.parse(objParams[2].toString());
           if (area < val) {
-            print("Area is lesser than");
-            print(val);
-            print("\n");
+            stdout.write("Area is lesser than $val \n");
           }
         }
 
@@ -44,9 +42,7 @@ evaluate(List<double> squareOutput) {
       if (isCir && greater) {
         var val = double.parse(objParams[2].toString());
         if (cir > val) {
-          print("Circumference is greater than");
-          print(val);
-          print("\n");
+          stdout.write("Circumference is greater than $val \n");
         }
       }
 
@@ -54,9 +50,7 @@ evaluate(List<double> squareOutput) {
         if (isCir && lesser) {
             var val = double.parse(objParams[2].toString());
           if (cir < val) {
-            print("Circumference less than");
-            print(val);
-            print("\n");
+            stdout.write("Circumference less than $val \n");
           }
         }
       }
@@ -64,22 +58,21 @@ evaluate(List<double> squareOutput) {
       if(isArea && isCir){
         if(greater){
           if(area>cir){
-            print("Area greater than Circumference");
+            stdout.write("Area greater than Circumference\n");
           }
           else {
-            print("Area less than Circumferece");
+            stdout.write("Area less than Circumferece\n");
           }
         }
         if(lesser){
           if(area<cir){
-            print("Area less than Circumference");
+            stdout.write("Area less than Circumference\n");
           }
           else {
-            print("Area greater than Circumferece");
+            stdout.write("Area greater than Circumferece\n");
           }
         }
       }
   }
-
 }
 
